@@ -32,15 +32,24 @@ HomeTrack is planned as a browser-based application using a frontend, backend, a
 
 ## Repository Organization
 
-- `templates/` — HTML templates for application pages and forms
-- `static/` — CSS, JavaScript, and other frontend resources
-- `docs/` — Requirements, use cases, diagrams, and project documentation
-- `tests/` — Application tests and verification files
-- `app.py` — Planned main Flask application file
-- `requirements.txt` — Planned Python dependency list
-- `README.md` — Project information and development instructions
+The HomeTrack repository is organized to separate frontend resources, backend application logic, database components, documentation, and testing.
 
-Database initialization and supporting Python files will be added as development progresses.
+- `templates/` — HTML templates for application pages and forms, including the maintenance task and home improvement project interfaces.
+- `static/` — Folder reserved for CSS, JavaScript, and other frontend resources.
+- `docs/` — Folder reserved for requirements, use cases, system diagrams, and supporting project documentation.
+- `tests/` — Folder reserved for application testing and verification files.
+- `app.py` — Main Flask application containing routes, form validation, backend logic, and database operations.
+- `init_db.py` — Python script used to initialize the SQLite database.
+- `schema.sql` — SQL definitions for the five database tables, including primary and foreign key relationships.
+- `requirements.txt` — Python dependencies needed to install and run the application.
+- `README.md` — Project overview, architecture, setup instructions, development progress, and known limitations.
+- `.gitignore` — Excludes local environment files and the application database from version control.
+
+The `hometrack.db` file stores application records locally and is excluded from GitHub. The repository contains the scripts needed to recreate the database structure.
+
+The `static/`, `docs/`, and `tests/` folders currently contain placeholder files and will be populated as development continues.
+
+Git and GitHub are used to maintain version history, document development progress, and preserve working versions of the application throughout Modules 5, 6, and 7.
 
 ## Development Plan
 
@@ -62,15 +71,28 @@ Database initialization and supporting Python files will be added as development
 
 ## Installation and Setup
 
-Detailed installation and setup instructions will be added once the Flask application and SQLite database have been configured.
+HomeTrack currently runs locally using Python, Flask, and SQLite.
+
+To set up the application:
+
+1. Clone the GitHub repository to a local computer.
+2. Open the project folder in Visual Studio Code.
+3. Create and activate a Python virtual environment.
+4. Install the dependencies listed in `requirements.txt`.
+5. Run `init_db.py` to create the SQLite database tables.
+6. Create a demonstration household record for initial testing.
+7. Run `app.py` to start the Flask development server.
+8. Open http://127.0.0.1:5000/ in a web browser.
+
+The current prototype uses a local SQLite database and a predefined demonstration household with ID 1. These are not included in the GitHub repository. Automated demonstration data setup will be added as development progresses.
 
 ## Current Project Status
 
-The repository has been initialized, and the initial folder structure has been established. Application implementation is planned for Module 5.
+The HomeTrack development environment, Flask application, and SQLite database have been established. Two primary use cases have been implemented and successfully tested: Create Maintenance Task and Create Home Improvement Project. Both functions allow users to enter information, save records to SQLite, and retrieve the saved information for display. Additional functionality, including task completion and project expense tracking, will be developed during Module 6.
 
 ## Known Limitations
 
-The application is not yet implemented. Features, testing results, and outstanding limitations will be documented as development progresses.
+HomeTrack is currently a working prototype with maintenance task creation and home improvement project creation implemented. The application uses a predefined demonstration household rather than a complete user authentication system. Maintenance task completion, project expense tracking, budget calculations, and additional reporting features have not yet been implemented. These functions will be addressed during subsequent development modules.
 
 ## Academic Purpose
 
