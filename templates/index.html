@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeTrack</title>
+</head>
+<body>
+    <header>
+        <h1>HomeTrack</h1>
+        <p>Home Maintenance and Project Management System</p>
+    </header>
+
+    <main>
+        <h2>Welcome to HomeTrack</h2>
+        <p>Manage household maintenance and improvement projects in one place.</p>
+
+        <section>
+            <h2>Create Maintenance Task</h2>
+
+            {% if created %}
+                <p style="color: green;">
+                    Maintenance task created successfully!
+                </p>
+            {% endif %}
+
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('home') }}">
+                <p>
+                    <label for="task_name">Task Name:</label><br>
+                    <input type="text" id="task_name"
+                           name="task_name" required>
+                </p>
+
+                <p>
+                    <label for="description">Description:</label><br>
+                    <textarea id="description"
+                              name="description"></textarea>
+                </p>
+
+                <p>
+                    <label for="priority">Priority:</label><br>
+                    <select id="priority" name="priority" required>
+                        <option value="">Select Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="due_date">Due Date:</label><br>
+                    <input type="date" id="due_date"
+                           name="due_date" required>
+                </p>
+
+                <button type="submit">Create Task</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Maintenance Task List</h2>
+
+            {% if tasks %}
+                <table border="1" cellpadding="8">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Priority</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr>
+                            <td>{{ task["task_name"] }}</td>
+                            <td>{{ task["priority"] }}</td>
+                            <td>{{ task["due_date"] }}</td>
+                            <td>{{ task["status"] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No maintenance tasks have been created yet.</p>
+            {% endif %}
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Home Improvement Projects</h2>
+            <p>
+                Project management functionality will be
+                implemented next.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
