@@ -8,11 +8,12 @@ The system is designed to help homeowners organize household maintenance tasks, 
 
 ## Application Architecture
 
-HomeTrack is planned as a browser-based application using a frontend, backend, and relational database.
+HomeTrack is a browser-based application using HTML, CSS, and Jinja templates for the frontend, Python and Flask for backend processing, and SQLite for relational data storage.
 
 ### Technology Stack
 
-- Frontend: HTML, CSS, JavaScript, Bootstrap
+- Frontend (Implemented): HTML, CSS, and Jinja templates
+- Frontend (Planned): JavaScript and Bootstrap
 - Backend: Python and Flask
 - Database: SQLite
 - Version Control: Git and GitHub
