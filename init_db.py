@@ -14,6 +14,17 @@ connection.execute("PRAGMA foreign_keys = ON")
 with open(schema_path, "r", encoding="utf-8") as schema_file:
     connection.executescript(schema_file.read())
 
+# Create the demonstration household if it does not exist
+connection.execute(
+    """
+    INSERT OR IGNORE INTO households
+    (household_id, household_name, property_address)
+    VALUES (1, 'Demo Household', '123 Example Lane')
+    """
+)
+
+connection.commit()
+
 connection.close()
 
 print("HomeTrack database initialized successfully!")

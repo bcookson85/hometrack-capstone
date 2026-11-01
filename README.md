@@ -71,7 +71,7 @@ Git and GitHub are used to maintain version history, document development progre
 
 ## Installation and Setup
 
-HomeTrack currently runs locally using Python, Flask, and SQLite.
+HomeTrack is a web-based application developed using Python, Flask, HTML, CSS, and SQLite.
 
 To set up the application:
 
@@ -79,12 +79,15 @@ To set up the application:
 2. Open the project folder in Visual Studio Code.
 3. Create and activate a Python virtual environment.
 4. Install the dependencies listed in `requirements.txt`.
-5. Run `init_db.py` to create the SQLite database tables.
-6. Create a demonstration household record for initial testing.
-7. Run `app.py` to start the Flask development server.
-8. Open http://127.0.0.1:5000/ in a web browser.
+5. Run `python init_db.py` to create the SQLite database tables and automatically establish the demonstration household.
+6. Run `python app.py` to start the Flask development server.
+7. Open http://127.0.0.1:5000/ in a web browser.
 
-The current prototype uses a local SQLite database and a predefined demonstration household with ID 1. These are not included in the GitHub repository. Automated demonstration data setup will be added as development progresses.
+The current prototype uses a local SQLite database and a predefined demonstration household with ID 1. The database is created automatically when the initialization script runs.
+
+The `hometrack.db` file is excluded from GitHub through `.gitignore`. The repository includes the SQL schema and initialization script needed to recreate the database structure and demonstration household.
+
+The application currently supports creating maintenance tasks and home improvement projects, saving records to SQLite, and displaying saved information.
 
 ## Current Project Status
 
