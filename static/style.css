@@ -1,0 +1,182 @@
+/* HomeTrack - Application Styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f6fa;
+    color: #253247;
+    line-height: 1.6;
+}
+
+/* Header */
+
+header {
+    background-color: #173456;
+    color: white;
+    padding: 28px 40px;
+    border-bottom: 5px solid #3b82c4;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header p {
+    margin: 5px 0 0;
+    color: #d5e3f1;
+}
+
+/* Main Layout */
+
+main {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+main > h2 {
+    color: #173456;
+    margin-bottom: 5px;
+}
+
+main > p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+/* Content Panels */
+
+section {
+    background-color: white;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border: 1px solid #e1e7ef;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #173456;
+    font-size: 22px;
+    border-bottom: 2px solid #e8eef5;
+    padding-bottom: 12px;
+}
+
+/* Forms */
+
+form p {
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: 600;
+    color: #334155;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    max-width: 450px;
+    padding: 10px 12px;
+    margin-top: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: white;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #3b82c4;
+    outline-offset: 1px;
+}
+
+/* Buttons */
+
+button {
+    background-color: #2463a0;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #174b7d;
+}
+
+/* Data Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 13px 15px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+th {
+    background-color: #edf3f9;
+    color: #173456;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tbody tr:hover {
+    background-color: #eef6ff;
+}
+
+/* Section Separators */
+
+hr {
+    display: none;
+}
+
+/* Smaller Screens */
+
+@media (max-width: 600px) {
+    header {
+        padding: 22px;
+    }
+
+    main {
+        margin-top: 20px;
+        padding: 0 12px;
+    }
+
+    section {
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+}
