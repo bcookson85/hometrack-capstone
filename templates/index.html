@@ -94,13 +94,76 @@
 
         <hr>
 
-        <section>
-            <h2>Home Improvement Projects</h2>
-            <p>
-                Project management functionality will be
-                implemented next.
-            </p>
-        </section>
-    </main>
-</body>
-</html>
+        
+<section>
+    <h2>Create Home Improvement Project</h2>
+
+    {% if project_created %}
+        <p style="color: green;">
+            Home improvement project created successfully!
+        </p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('create_project') }}">
+        <p>
+            <label for="project_name">Project Name:</label><br>
+            <input type="text" id="project_name"
+                   name="project_name" required>
+        </p>
+
+        <p>
+            <label for="project_description">Description:</label><br>
+            <textarea id="project_description"
+                      name="description"></textarea>
+        </p>
+
+        <p>
+            <label for="estimated_budget">Estimated Budget ($):</label><br>
+            <input type="number" id="estimated_budget"
+                   name="estimated_budget" min="0"
+                   step="0.01" required>
+        </p>
+
+        <p>
+            <label for="target_completion_date">
+                Target Completion Date:
+            </label><br>
+            <input type="date" id="target_completion_date"
+                   name="target_completion_date" required>
+        </p>
+
+        <button type="submit">Create Project</button>
+    </form>
+</section>
+
+<hr>
+
+<section>
+    <h2>Home Improvement Project List</h2>
+
+    {% if projects %}
+        <table border="1" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Estimated Budget</th>
+                    <th>Target Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project["project_name"] }}</td>
+                    <td>${{ "%.2f"|format(project["estimated_budget"]) }}</td>
+                    <td>{{ project["target_completion_date"] }}</td>
+                    <td>{{ project["status"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No home improvement projects have been created yet.</p>
+    {% endif %}
+</section>
+

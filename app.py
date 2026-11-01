@@ -3,6 +3,7 @@ import sqlite3
 from contextlib import closing
 from datetime import date
 from pathlib import Path
+from math import isfinite
 
 from flask import Flask, redirect, render_template, request, url_for
 
@@ -64,14 +65,69 @@ def home():
             """,
             (DEMO_HOUSEHOLD_ID,),
         ).fetchall()
+        
+        projects = connection.execute(
+            """
+            SELECT project_id, project_name, estimated_budget,
+                   target_completion_date, status
+            FROM home_improvement_projects
+            WHERE household_id = ?
+            ORDER BY project_id DESC
+            """,
+            (DEMO_HOUSEHOLD_ID,),
+        ).fetchall()
 
+    
     return render_template(
         "index.html",
         tasks=tasks,
+        projects=projects,
         error=error,
         created=request.args.get("created") == "1",
+        project_created=request.args.get("project_created") == "1",
     )
 
+
+@app.route("/projects", methods=["POST"])
+def create_project():
+    project_name = request.form.get("project_name", "").strip()
+    description = request.form.get("description", "").strip()
+    budget_text = request.form.get("estimated_budget", "").strip()
+    target_date = request.form.get("target_completion_date", "").strip()
+
+    if not project_name or not budget_text or not target_date:
+        return "Please complete all required project fields.", 400
+
+    try:
+        estimated_budget = float(budget_text)
+        date.fromisoformat(target_date)
+
+        if not isfinite(estimated_budget) or estimated_budget < 0:
+            return "Please enter a valid project budget.", 400
+
+    except ValueError:
+        return "Please enter a valid budget and completion date.", 400
+
+    with closing(sqlite3.connect(DATABASE_PATH)) as connection:
+        connection.execute("PRAGMA foreign_keys = ON")
+        connection.execute(
+            """
+            INSERT INTO home_improvement_projects
+            (household_id, project_name, description,
+             estimated_budget, target_completion_date)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (
+                DEMO_HOUSEHOLD_ID,
+                project_name,
+                description,
+                estimated_budget,
+                target_date,
+            ),
+        )
+        connection.commit()
+
+    return redirect(url_for("home", project_created="1"))
 
 if __name__ == "__main__":
     app.run(debug=True)
