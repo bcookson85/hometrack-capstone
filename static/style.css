@@ -180,3 +180,28 @@ hr {
         padding: 10px;
     }
 }
+
+/* Project expense form layout */
+form[action="/projects/expenses"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+form[action="/projects/expenses"] label {
+    display: block;
+    margin-bottom: -8px;
+}
+
+form[action="/projects/expenses"] input,
+form[action="/projects/expenses"] select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+form[action="/projects/expenses"] button {
+    justify-self: start;
+    margin-top: 8px;
+}

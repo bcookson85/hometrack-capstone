@@ -82,8 +82,18 @@
                         <tr>
                             <td>{{ task["task_name"] }}</td>
                             <td>{{ task["priority"] }}</td>
-                            <td>{{ task["due_date"] }}</td>
-                            <td>{{ task["status"] }}</td>
+                            <td>{{ task["due_date"] }}</td>                           
+                            <td>
+                                <form action="{{ url_for('update_task_status', task_id=task['task_id']) }}" method="POST">
+                                    <select name="status" required>
+                                        <option value="Not Started" {% if task["status"] == "Not Started" %}selected{% endif %}>Not Started</option>
+                                        <option value="In Progress" {% if task["status"] == "In Progress" %}selected{% endif %}>In Progress</option>
+                                        <option value="Completed" {% if task["status"] == "Completed" %}selected{% endif %}>Completed</option>
+                                    </select>
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -148,6 +158,8 @@
                 <tr>
                     <th>Project Name</th>
                     <th>Estimated Budget</th>
+                    <th>Total Spent</th>
+                    <th>Remaining Budget</th>
                     <th>Target Date</th>
                     <th>Status</th>
                 </tr>
@@ -157,6 +169,8 @@
                 <tr>
                     <td>{{ project["project_name"] }}</td>
                     <td>${{ "%.2f"|format(project["estimated_budget"]) }}</td>
+                    <td>${{ "%.2f"|format(project["total_spent"]) }}</td>
+                    <td>${{ "%.2f"|format(project["remaining_budget"]) }}</td>
                     <td>{{ project["target_completion_date"] }}</td>
                     <td>{{ project["status"] }}</td>
                 </tr>
@@ -168,3 +182,74 @@
     {% endif %}
 </section>
 
+<hr>
+
+<section>
+    <h2>Record Project Expense</h2>
+
+    {% if projects %}
+    <form action="{{ url_for('record_project_expense') }}" method="POST">
+        <label for="project_id">Home Improvement Project:</label>
+        <select id="project_id" name="project_id" required>
+            <option value="">Select a Project</option>
+            {% for project in projects %}
+            <option value="{{ project['project_id'] }}">
+                {{ project['project_name'] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="expense_description">Expense Description:</label>
+        <input type="text" id="expense_description"
+               name="expense_description" required>
+
+        <label for="amount">Expense Amount ($):</label>
+        <input type="number" id="amount" name="amount"
+               min="0" step="0.01" required>
+
+        <label for="expense_date">Expense Date:</label>
+        <input type="date" id="expense_date"
+               name="expense_date" required>
+
+        <button type="submit">Record Expense</button>
+    </form>
+    {% else %}
+    <p>Create a home improvement project before recording expenses.</p>
+    {% endif %}
+</section>
+
+
+<hr>
+
+<section>
+    <h2>Recorded Project Expenses</h2>
+
+    {% if expense_created %}
+    <p class="success">Project expense recorded successfully!</p>
+    {% endif %}
+
+    {% if expenses %}
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Expense Description</th>
+                <th>Amount</th>
+                <th>Expense Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense["project_name"] }}</td>
+                <td>{{ expense["expense_description"] }}</td>
+                <td>${{ "%.2f"|format(expense["amount"]) }}</td>
+                <td>{{ expense["expense_date"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No project expenses have been recorded yet.</p>
+    {% endif %}
+</section>
