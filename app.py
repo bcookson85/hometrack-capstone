@@ -221,6 +221,17 @@ def record_project_expense():
             """,
             (project_id, description, amount, expense_date),
         )
+        
+        connection.execute(
+            """
+            UPDATE home_improvement_projects
+            SET status = 'In Progress'
+            WHERE project_id = ?
+              AND household_id = ?
+              AND status = 'Not Started'
+            """,
+            (project_id, DEMO_HOUSEHOLD_ID),
+        )
 
         connection.commit()
 
