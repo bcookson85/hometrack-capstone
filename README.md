@@ -48,7 +48,7 @@ The HomeTrack repository is organized to separate frontend resources, backend ap
 
 The `hometrack.db` file stores application records locally and is excluded from GitHub. The repository contains the scripts needed to recreate the database structure.
 
-The `static/`, `docs/`, and `tests/` folders currently contain placeholder files and will be populated as development continues.
+The `static/` folder contains the custom CSS stylesheet used to style the HomeTrack interface. The `docs/` and `tests/` folders currently contain placeholder files and are reserved for future documentation and testing resources.
 
 Git and GitHub are used to maintain version history, document development progress, and preserve working versions of the application throughout Modules 5, 6, and 7.
 
@@ -60,10 +60,12 @@ Git and GitHub are used to maintain version history, document development progre
 - Implement home improvement project creation.
 - Demonstrate initial working functionality.
 
-### Module 6 — Continued Implementation
-- Implement maintenance task completion.
-- Implement project expense recording and budget calculations.
-- Integrate and test the major application functions.
+### Module 6 – Continued Implementation
+- Implemented maintenance task status updates (Not Started, In Progress, Completed).
+- Implemented project expense recording with validation and SQLite storage.
+- Added expense history and automatic project budget calculations.
+- Integrated the new features with the existing HomeTrack interface.
+- Verified task status persistence, expense recording, and spending calculations.
 
 ### Module 7 — Final Testing and Presentation
 - Verify the primary use cases.
@@ -92,12 +94,21 @@ The application currently supports creating maintenance tasks and home improveme
 
 ## Current Project Status
 
-The HomeTrack development environment, Flask application, and SQLite database have been established. Two primary use cases have been implemented and successfully tested: Create Maintenance Task and Create Home Improvement Project. Both functions allow users to enter information, save records to SQLite, and retrieve the saved information for display. Additional functionality, including task completion and project expense tracking, will be developed during Module 6.
+HomeTrack is a functioning web-based prototype developed using Python, Flask, HTML, CSS, Jinja templates, and SQLite.
+
+All four primary use cases have been implemented:
+
+1. **Create Maintenance Task:** Users can create maintenance tasks with descriptions, priorities, and due dates.
+2. **Update Maintenance Task Status:** Users can change task statuses between Not Started, In Progress, and Completed.
+3. **Create Home Improvement Project:** Users can create projects with descriptions, estimated budgets, and target completion dates.
+4. **Record Project Expenses:** Users can record expenses against existing projects and view expense history.
+
+HomeTrack also automatically calculates total spending and remaining budgets for each home improvement project.
+
+The application has been tested for task creation, project creation, status persistence, expense recording, and budget calculations involving multiple expenses. Development progress is maintained through GitHub.
 
 ## Known Limitations
 
-HomeTrack is currently a working prototype with maintenance task creation and home improvement project creation implemented. The application uses a predefined demonstration household rather than a complete user authentication system. Maintenance task completion, project expense tracking, budget calculations, and additional reporting features have not yet been implemented. These functions will be addressed during subsequent development modules.
+HomeTrack currently uses a predefined demonstration household rather than a complete user registration and authentication system. The application runs locally using Flask and SQLite and has not been deployed as a public website.
 
-## Academic Purpose
-
-This repository contains coursework developed for the MSIS Capstone Project at Northwest Missouri State University. Development will use fictional demonstration data, and sensitive credentials will not be committed.
+Additional testing, error-handling improvements, and final documentation review remain for Module 7. Optional enhancements, such as advanced reporting and notifications, are outside the current implementation scope.
