@@ -67,10 +67,13 @@ Git and GitHub are used to maintain version history, document development progre
 - Integrated the new features with the existing HomeTrack interface.
 - Verified task status persistence, expense recording, and spending calculations.
 
-### Module 7 — Final Testing and Presentation
-- Verify the primary use cases.
-- Address remaining errors and incomplete functionality.
-- Update documentation and demonstrate the final prototype.
+### Module 7 – Final Testing and Presentation
+- Verified all four primary use cases through functional testing.
+- Completed Python syntax checks and database schema verification.
+- Confirmed SQLite database integrity and foreign key relationships.
+- Tested data retrieval, project expense calculations, input validation, and error handling.
+- Updated project documentation to reflect the completed prototype.
+- Final presentation and submission are the remaining deliverables.
 
 ## Installation and Setup
 
@@ -109,6 +112,8 @@ The application has been tested for task creation, project creation, status pers
 
 ## Known Limitations
 
-HomeTrack currently uses a predefined demonstration household rather than a complete user registration and authentication system. The application runs locally using Flask and SQLite and has not been deployed as a public website.
+HomeTrack is a functioning academic prototype that uses a predefined demonstration household rather than a complete user registration and authentication system. The application runs locally using Flask and SQLite and has not been deployed as a public website.
 
-Additional testing, error-handling improvements, and final documentation review remain for Module 7. Optional enhancements, such as advanced reporting and notifications, are outside the current implementation scope.
+All four primary use cases have been implemented and functionally tested. Final verification included Python syntax checks, database schema initialization, SQLite integrity and foreign key checks, data retrieval, project budget calculations, input validation, and error handling.
+
+Optional enhancements, including user authentication, advanced reporting, and notifications, remain outside the current implementation scope.
